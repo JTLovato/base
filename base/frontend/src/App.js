@@ -1,27 +1,27 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import HomeScreen from "./screens/HomeScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import Navbar from "react-bootstrap/Navbar";
 import Badge from "react-bootstrap/Badge";
 import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
 import { useContext } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import SignupScreen from "./screens/SignupScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
-
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
@@ -80,12 +80,14 @@ function App() {
               <Route path='/cart' element={<CartScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
               <Route path='/signup' element={<SignupScreen />} />
-              <Route path='/payment' element={<PaymentMethodScreen />}></Route>
               <Route path='/placeorder' element={<PlaceOrderScreen />} />
+              <Route path='/order/:id' element={<OrderScreen />}></Route>
+
               <Route
                 path='/shipping'
                 element={<ShippingAddressScreen />}
               ></Route>
+              <Route path='/payment' element={<PaymentMethodScreen />}></Route>
               <Route path='/' element={<HomeScreen />} />
             </Routes>
           </Container>
@@ -97,5 +99,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;
