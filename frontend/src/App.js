@@ -36,10 +36,10 @@ function App() {
     localStorage.removeItem("userInfo");
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
+    window.location.href = "/signin";
   };
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -70,7 +70,6 @@ function App() {
               >
                 <i className='fas fa-bars'></i>
               </Button>
-
               <Link to='/'>
                 <Navbar.Brand>amazona</Navbar.Brand>
               </Link>
@@ -157,6 +156,7 @@ function App() {
             <Routes>
               <Route path='/product/:slug' element={<ProductScreen />} />
               <Route path='/cart' element={<CartScreen />} />
+              <Route path='/search' element={<SearchScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
               <Route path='/signup' element={<SignupScreen />} />
               <Route
@@ -167,17 +167,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path='/search' element={<SearchScreen />} />
-
               <Route path='/placeorder' element={<PlaceOrderScreen />} />
-              <Route
-                path='/orderhistory'
-                element={
-                  <ProtectedRoute>
-                    <OrderHistoryScreen />
-                  </ProtectedRoute>
-                }
-              ></Route>
               <Route
                 path='/order/:id'
                 element={
@@ -186,7 +176,14 @@ function App() {
                   </ProtectedRoute>
                 }
               ></Route>
-
+              <Route
+                path='/orderhistory'
+                element={
+                  <ProtectedRoute>
+                    <OrderHistoryScreen />
+                  </ProtectedRoute>
+                }
+              ></Route>
               <Route
                 path='/shipping'
                 element={<ShippingAddressScreen />}
@@ -201,6 +198,7 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
+
               <Route path='/' element={<HomeScreen />} />
             </Routes>
           </Container>
