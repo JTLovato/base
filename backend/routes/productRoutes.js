@@ -45,7 +45,6 @@ productRouter.get(
     const rating = query.rating || "";
     const order = query.order || "";
     const searchQuery = query.query || "";
-
     const queryFilter =
       searchQuery && searchQuery !== "all"
         ? {
@@ -86,7 +85,6 @@ productRouter.get(
         : order === "newest"
         ? { createdAt: -1 }
         : { _id: -1 };
-
     const products = await Product.find({
       ...queryFilter,
       ...categoryFilter,
@@ -96,7 +94,6 @@ productRouter.get(
       .sort(sortOrder)
       .skip(pageSize * (page - 1))
       .limit(pageSize);
-
     const countProducts = await Product.countDocuments({
       ...queryFilter,
       ...categoryFilter,
@@ -111,7 +108,6 @@ productRouter.get(
     });
   })
 );
-
 productRouter.get(
   "/categories",
   expressAsyncHandler(async (req, res) => {
@@ -119,9 +115,8 @@ productRouter.get(
     res.send(categories);
   })
 );
-
 productRouter.get("/slug/:slug", async (req, res) => {
-  const product = await Product.findOne({ slug: { $eq: req.params.slug } });
+  const product = await Product.findOne({ slug: req.params.slug });
   if (product) {
     res.send(product);
   } else {
@@ -136,5 +131,4 @@ productRouter.get("/:id", async (req, res) => {
     res.status(404).send({ message: "Product Not Found" });
   }
 });
-
 export default productRouter;
