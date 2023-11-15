@@ -8,6 +8,7 @@ import Badge from "react-bootstrap/Badge";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
+import { LinkContainer } from "react-router-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
@@ -70,9 +71,9 @@ function App() {
               >
                 <i className='fas fa-bars'></i>
               </Button>
-              <Link to='/'>
+              <LinkContainer to='/'>
                 <Navbar.Brand>amazona</Navbar.Brand>
-              </Link>
+              </LinkContainer>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
                 <SearchBox />
@@ -87,12 +88,12 @@ function App() {
                   </Link>
                   {userInfo ? (
                     <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
-                      <Link to='/profile'>
+                      <LinkContainer to='/profile'>
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
-                      </Link>
-                      <Link to='/orderhistory'>
+                      </LinkContainer>
+                      <LinkContainer to='/orderhistory'>
                         <NavDropdown.Item>Order History</NavDropdown.Item>
-                      </Link>
+                      </LinkContainer>
                       <NavDropdown.Divider />
                       <Link
                         className='dropdown-item'
@@ -109,18 +110,18 @@ function App() {
                   )}
                   {userInfo && userInfo.isAdmin && (
                     <NavDropdown title='Admin' id='admin-nav-dropdown'>
-                      <Link to='/admin/dashboard'>
+                      <LinkContainer to='/admin/dashboard'>
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
-                      </Link>
-                      <Link to='/admin/productlist'>
+                      </LinkContainer>
+                      <LinkContainer to='/admin/productlist'>
                         <NavDropdown.Item>Products</NavDropdown.Item>
-                      </Link>
-                      <Link to='/admin/orderlist'>
+                      </LinkContainer>
+                      <LinkContainer to='/admin/orderlist'>
                         <NavDropdown.Item>Orders</NavDropdown.Item>
-                      </Link>
-                      <Link to='/admin/userlist'>
+                      </LinkContainer>
+                      <LinkContainer to='/admin/userlist'>
                         <NavDropdown.Item>Users</NavDropdown.Item>
-                      </Link>
+                      </LinkContainer>
                     </NavDropdown>
                   )}
                 </Nav>
@@ -141,12 +142,12 @@ function App() {
             </Nav.Item>
             {categories.map((category) => (
               <Nav.Item key={category}>
-                <Link
+                <LinkContainer
                   to={`/search?category=${category}`}
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
-                </Link>
+                </LinkContainer>
               </Nav.Item>
             ))}
           </Nav>
