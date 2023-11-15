@@ -1,8 +1,8 @@
 import React, { useContext, useReducer, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Store } from "../Store";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
 import axios from "axios";
@@ -52,7 +52,7 @@ export default function ProfileScreen() {
       });
       ctxDispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
-      toast.success("User Updated Successfully!");
+      toast.success("User updated successfully");
     } catch (err) {
       dispatch({
         type: "FETCH_FAIL",
@@ -68,7 +68,7 @@ export default function ProfileScreen() {
       </Helmet>
       <h1 className='my-3'>User Profile</h1>
       <form onSubmit={submitHandler}>
-        <Form.Group className='mb-3' contrilId='name'>
+        <Form.Group className='mb-3' controlId='name'>
           <Form.Label>Name</Form.Label>
           <Form.Control
             value={name}
@@ -76,28 +76,27 @@ export default function ProfileScreen() {
             required
           />
         </Form.Group>
-        <Form.Group className='mb-3' contrilId='email'>
+        <Form.Group className='mb-3' controlId='name'>
           <Form.Label>Email</Form.Label>
           <Form.Control
+            type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </Form.Group>
-        <Form.Group className='mb-3' contrilId='password'>
+        <Form.Group className='mb-3' controlId='password'>
           <Form.Label>Password</Form.Label>
           <Form.Control
-            value={password}
+            type='password'
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
         </Form.Group>
-        <Form.Group className='mb-3' contrilId='password'>
+        <Form.Group className='mb-3' controlId='password'>
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
-            value={password}
+            type='password'
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
           />
         </Form.Group>
         <div className='mb-3'>
