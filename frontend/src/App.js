@@ -28,7 +28,7 @@ import SearchScreen from "./screens/SearchScreen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardScreen from "./screens/DashboardScreen";
 import AdminRoute from "./components/AdminRoute";
-// import ProductListScreen from "./screens/ProductListScreen";
+import ProductListScreen from "./screens/ProductListScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -114,16 +114,16 @@ function App() {
                       <LinkContainer to='/admin/dashboard'>
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </LinkContainer>
-                      {/* <LinkContainer to='/admin/products'> */}
-                      <LinkContainer to='/admin/productlist'>
+                      <LinkContainer to='/admin/products'>
+                        {/* <LinkContainer to='/admin/productlist'> */}
                         <NavDropdown.Item>Products</NavDropdown.Item>
                       </LinkContainer>
-                      {/* <LinkContainer to='/admin/orders'> */}
-                      <LinkContainer to='/admin/orderlist'>
+                      <LinkContainer to='/admin/orders'>
+                        {/* <LinkContainer to='/admin/orderlist'> */}
                         <NavDropdown.Item>Orders</NavDropdown.Item>
                       </LinkContainer>
-                      {/* <LinkContainer to='/admin/users'> */}
-                      <LinkContainer to='/admin/userlist'>
+                      <LinkContainer to='/admin/users'>
+                        {/* <LinkContainer to='/admin/userlist'> */}
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
@@ -203,14 +203,14 @@ function App() {
                   </AdminRoute>
                 }
               ></Route>
-              {/* <Route
+              <Route
                 path='/admin/products'
                 element={
                   <AdminRoute>
                     <ProductListScreen />
                   </AdminRoute>
                 }
-              ></Route> */}
+              ></Route>
 
               <Route path='/' element={<HomeScreen />} />
             </Routes>
