@@ -28,7 +28,7 @@ import SearchScreen from "./screens/SearchScreen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardScreen from "./screens/DashboardScreen";
 import AdminRoute from "./components/AdminRoute";
-import ProductListScreen from "./screens/ProductListScreen";
+import ListProductsScreen from "./screens/ListProductsScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -207,7 +207,7 @@ function App() {
                 path='/admin/products'
                 element={
                   <AdminRoute>
-                    <ProductListScreen />
+                    <ListProductsScreen />
                   </AdminRoute>
                 }
               ></Route>
