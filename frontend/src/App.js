@@ -8,7 +8,6 @@ import Badge from "react-bootstrap/Badge";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
-// import { LinkContainer } from "react-router-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
@@ -33,6 +32,7 @@ import ListProductsScreen from "./screens/ListProductsScreen";
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
+
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
@@ -42,6 +42,7 @@ function App() {
   };
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -72,6 +73,7 @@ function App() {
               >
                 <i className='fas fa-bars'></i>
               </Button>
+
               <Link to='/'>
                 <Navbar.Brand>amazona</Navbar.Brand>
               </Link>
@@ -115,15 +117,12 @@ function App() {
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </Link>
                       <Link to='/admin/products'>
-                        {/* <LinkContainer to='/admin/productlist'> */}
                         <NavDropdown.Item>Products</NavDropdown.Item>
                       </Link>
                       <Link to='/admin/orders'>
-                        {/* <LinkContainer to='/admin/orderlist'> */}
                         <NavDropdown.Item>Orders</NavDropdown.Item>
                       </Link>
                       <Link to='/admin/users'>
-                        {/* <LinkContainer to='/admin/userlist'> */}
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </Link>
                     </NavDropdown>
@@ -223,4 +222,5 @@ function App() {
     </BrowserRouter>
   );
 }
+
 export default App;
