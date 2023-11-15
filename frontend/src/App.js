@@ -8,7 +8,6 @@ import Badge from "react-bootstrap/Badge";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
-import { LinkContainer } from "react-router-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
@@ -69,9 +68,9 @@ function App() {
                 <i className='fas fa-bars'></i>
               </Button>
 
-              <LinkContainer to='/'>
+              <Link to='/'>
                 <Navbar.Brand>amazona</Navbar.Brand>
-              </LinkContainer>
+              </Link>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
                 <SearchBox />
@@ -86,12 +85,12 @@ function App() {
                   </Link>
                   {userInfo ? (
                     <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
-                      <LinkContainer to='/profile'>
+                      <Link to='/profile'>
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
-                      </LinkContainer>
-                      <LinkContainer to='/orderhistory'>
+                      </Link>
+                      <Link to='/orderhistory'>
                         <NavDropdown.Item>Order History</NavDropdown.Item>
-                      </LinkContainer>
+                      </Link>
                       <NavDropdown.Divider />
                       <Link
                         className='dropdown-item'
@@ -124,12 +123,12 @@ function App() {
             </Nav.Item>
             {categories.map((category) => (
               <Nav.Item key={category}>
-                <LinkContainer
+                <Link
                   to={`/search?category=${category}`}
                   onClick={() => setSidebarIsOpen(false)}
                 >
                   <Nav.Link>{category}</Nav.Link>
-                </LinkContainer>
+                </Link>
               </Nav.Item>
             ))}
           </Nav>
