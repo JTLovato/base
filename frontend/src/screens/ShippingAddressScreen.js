@@ -16,6 +16,7 @@ export default function ShippingAddressScreen() {
   const [fullName, setFullName] = useState(shippingAddress.fullName || "");
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
+  const [stateName, setStateName] = useState(shippingAddress.stateName || "");
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ""
   );
@@ -33,6 +34,7 @@ export default function ShippingAddressScreen() {
         fullName,
         address,
         city,
+        stateName,
         postalCode,
         country,
       },
@@ -43,6 +45,7 @@ export default function ShippingAddressScreen() {
         fullName,
         address,
         city,
+        stateName,
         postalCode,
         country,
       })
@@ -80,6 +83,14 @@ export default function ShippingAddressScreen() {
             <Form.Control
               value={city}
               onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className='mb-3' controlId='stateName'>
+            <Form.Label>State</Form.Label>
+            <Form.Control
+              value={stateName}
+              onChange={(e) => setStateName(e.target.value)}
               required
             />
           </Form.Group>
