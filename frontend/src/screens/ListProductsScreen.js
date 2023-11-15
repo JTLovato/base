@@ -31,7 +31,7 @@ export default function ListProductsScreen() {
     error: "",
   });
 
-  const { search, pathname } = useLocation();
+  const { search } = useLocation();
   const sp = new URLSearchParams(search);
   const page = sp.get("page") || 1;
 
