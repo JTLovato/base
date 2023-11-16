@@ -91,9 +91,7 @@ function App() {
                   {userInfo ? (
                     <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
                       <Link to='/profile'>User Profile</Link>
-                      <Link to='/orderhistory'>
-                        <NavDropdown.Item>Order History</NavDropdown.Item>
-                      </Link>
+                      <Link to='/orderhistory'>Order History</Link>
                       <NavDropdown.Divider />
                       <Link
                         className='dropdown-item'
@@ -111,16 +109,16 @@ function App() {
                   {userInfo && userInfo.isAdmin && (
                     <NavDropdown title='Admin' id='admin-nav-dropdown'>
                       <Link to='/admin/dashboard'>
-                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                        Dashboard
                       </Link>
                       <Link to='/admin/productlist'>
-                        <NavDropdown.Item>Products</NavDropdown.Item>
+                        Products<
                       </Link>
                       <Link to='/admin/orderlist'>
-                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                        Orders
                       </Link>
                       <Link to='/admin/userlist'>
-                        <NavDropdown.Item>Users</NavDropdown.Item>
+                        Users
                       </Link>
                     </NavDropdown>
                   )}
