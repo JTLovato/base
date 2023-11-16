@@ -27,6 +27,7 @@ import SearchScreen from "./screens/SearchScreen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardScreen from "./screens/DashboardScreen";
 import AdminRoute from "./components/AdminRoute";
+import ProductListScreen from "./screens/ProductListScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -110,9 +111,12 @@ function App() {
                   {userInfo && userInfo.isAdmin && (
                     <NavDropdown title='Admin' id='admin-nav-dropdown'>
                       <Link to='/admin/dashboard'>Dashboard</Link>
-                      <Link to='/admin/productlist'>Products</Link>
+                      {/* <Link to='/admin/productlist'>Products</Link>
                       <Link to='/admin/orderlist'>Orders</Link>
-                      <Link to='/admin/userlist'>Users</Link>
+                      <Link to='/admin/userlist'>Users</Link> */}
+                      <Link to='/admin/products'>Products</Link>
+                      <Link to='/admin/orders'>Orders</Link>
+                      <Link to='/admin/users'>Users</Link>
                     </NavDropdown>
                   )}
                 </Nav>
@@ -187,6 +191,14 @@ function App() {
                 element={
                   <AdminRoute>
                     <DashboardScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path='/admin/products'
+                element={
+                  <AdminRoute>
+                    <ProductListScreen />
                   </AdminRoute>
                 }
               ></Route>
