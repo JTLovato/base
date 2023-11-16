@@ -91,6 +91,7 @@ function App() {
                   {userInfo ? (
                     <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
                       <Link to='/profile'>User Profile</Link>
+                      <NavDropdown.Divider />
                       <Link to='/orderhistory'>Order History</Link>
                       <NavDropdown.Divider />
                       <Link
