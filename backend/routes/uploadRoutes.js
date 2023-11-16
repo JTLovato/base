@@ -8,17 +8,19 @@ const upload = multer();
 
 const uploadRouter = express.Router();
 
+const clouds = cloudinary.config({
+  cloud_name: "dh8wjhn3m",
+  api_key: "857653425233181",
+  api_secret: "4EpiYgA6-vokM1Q9pZtf5IVWAPg",
+});
+
 uploadRouter.post(
   "/",
   isAuth,
   isAdmin,
   upload.single("file"),
   async (req, res) => {
-    cloudinary.config({
-      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
-      api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
+    clouds;
     const streamUpload = (req) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream((error, result) => {
