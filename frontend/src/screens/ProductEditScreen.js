@@ -60,7 +60,6 @@ export default function ProductEditScreen() {
   const [countInStock, setCountInStock] = useState("");
   const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -84,7 +83,6 @@ export default function ProductEditScreen() {
     };
     fetchData();
   }, [productId]);
-
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -116,7 +114,6 @@ export default function ProductEditScreen() {
       dispatch({ type: "UPDATE_FAIL" });
     }
   };
-
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
@@ -134,7 +131,7 @@ export default function ProductEditScreen() {
       toast.success("Image uploaded successfully");
       setImage(data.secure_url);
     } catch (err) {
-      console.log("DAMMIT");
+      console.log("DAMMMMIT");
       toast.error(getError(err));
       dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
     }
