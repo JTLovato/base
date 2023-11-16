@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 import { Store } from "../Store";
 import { getError } from "../utils";
@@ -9,8 +10,6 @@ import { Helmet } from "react-helmet-async";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Button from "react-bootstrap/Button";
-import { toast } from "react-toastify";
-
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -61,7 +60,6 @@ export default function ProductEditScreen() {
   const [countInStock, setCountInStock] = useState("");
   const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -85,7 +83,6 @@ export default function ProductEditScreen() {
     };
     fetchData();
   }, [productId]);
-
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -113,11 +110,11 @@ export default function ProductEditScreen() {
       toast.success("Product updated successfully");
       navigate("/admin/products");
     } catch (err) {
+      console.log("DAMMIT, Line 113");
       toast.error(getError(err));
       dispatch({ type: "UPDATE_FAIL" });
     }
   };
-
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
@@ -135,19 +132,17 @@ export default function ProductEditScreen() {
       toast.success("Image uploaded successfully");
       setImage(data.secure_url);
     } catch (err) {
-      console.log("DAMMIT");
+      console.log("Dammit, line 135");
       toast.error(getError(err));
       dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
     }
   };
-
   return (
     <Container className='small-container'>
       <Helmet>
         <title>Edit Product ${productId}</title>
       </Helmet>
       <h1>Edit Product {productId}</h1>
-
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -226,7 +221,7 @@ export default function ProductEditScreen() {
           </Form.Group>
           <div className='mb-3'>
             <Button disabled={loadingUpdate} type='submit'>
-              Update.
+              Update
             </Button>
             {loadingUpdate && <LoadingBox></LoadingBox>}
           </div>
