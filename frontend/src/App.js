@@ -116,16 +116,13 @@ function App() {
                       <Link to='/admin/dashboard'>
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </Link>
-                      <Link to='/admin/productlist'>
-                        {/* <Link to='/admin/products'> */}
+                      <Link to='/admin/products'>
                         <NavDropdown.Item>Products</NavDropdown.Item>
                       </Link>
-                      <Link to='/admin/orderlist'>
-                        {/* <Link to='/admin/orders'> */}
+                      <Link to='/admin/orders'>
                         <NavDropdown.Item>Orders</NavDropdown.Item>
                       </Link>
-                      <Link to='/admin/userlist'>
-                        {/* <Link to='/admin/users'> */}
+                      <Link to='/admin/users'>
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </Link>
                     </NavDropdown>
