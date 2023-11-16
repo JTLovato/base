@@ -3,9 +3,6 @@ import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import streamifier from "streamifier";
 import { isAdmin, isAuth } from "../utils.js";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const upload = multer();
 
@@ -26,8 +23,10 @@ uploadRouter.post(
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream((error, result) => {
           if (result) {
+            console.log("hooray");
             resolve(result);
           } else {
+            console.log("ugh");
             reject(error);
           }
         });

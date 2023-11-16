@@ -135,6 +135,7 @@ export default function ProductEditScreen() {
       toast.success("Image uploaded successfully");
       setImage(data.secure_url);
     } catch (err) {
+      console.log("DAMMIT");
       toast.error(getError(err));
       dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
     }
