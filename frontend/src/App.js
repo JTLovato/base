@@ -90,9 +90,7 @@ function App() {
                   </Link>
                   {userInfo ? (
                     <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
-                      <Link to='/profile'>
-                        <NavDropdown.Item>User Profile</NavDropdown.Item>
-                      </Link>
+                      <Link to='/profile'>User Profile</Link>
                       <Link to='/orderhistory'>
                         <NavDropdown.Item>Order History</NavDropdown.Item>
                       </Link>
