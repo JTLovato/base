@@ -1,6 +1,8 @@
 import axios from "axios";
-import { useContext, useEffect, useReducer, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useReducer } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+// import { useContext, useEffect, useReducer, useRef, useState } from "react";
+// import { Link, useNavigate, useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -13,20 +15,20 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utils";
 import { Store } from "../Store";
-import Form from "react-bootstrap/Form";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import { toast } from "react-toastify";
+// import Form from "react-bootstrap/Form";
+// import FloatingLabel from "react-bootstrap/FloatingLabel";
+// import { toast } from "react-toastify";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "REFRESH_PRODUCT":
-      return { ...state, product: action.payload };
-    case "CREATE_REQUEST":
-      return { ...state, loadingCreateReview: true };
-    case "CREATE_SUCCESS":
-      return { ...state, loadingCreateReview: false };
-    case "CREATE_FAIL":
-      return { ...state, loadingCreateReview: false };
+    // case "REFRESH_PRODUCT":
+    //   return { ...state, product: action.payload };
+    // case "CREATE_REQUEST":
+    //   return { ...state, loadingCreateReview: true };
+    // case "CREATE_SUCCESS":
+    //   return { ...state, loadingCreateReview: false };
+    // case "CREATE_FAIL":
+    //   return { ...state, loadingCreateReview: false };
     case "FETCH_REQUEST":
       return { ...state, loading: true };
     case "FETCH_SUCCESS":
@@ -39,21 +41,26 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
-  let reviewsRef = useRef();
+  // let reviewsRef = useRef();
 
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+  // const [rating, setRating] = useState(0);
+  // const [comment, setComment] = useState("");
 
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
 
-  const [{ loading, error, product, loadingCreateReview }, dispatch] =
-    useReducer(reducer, {
-      product: [],
-      loading: true,
-      error: "",
-    });
+  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
+    product: [],
+    loading: true,
+    error: "",
+  });
+  // const [{ loading, error, product, loadingCreateReview }, dispatch] =
+  //   useReducer(reducer, {
+  //     product: [],
+  //     loading: true,
+  //     error: "",
+  //   });
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
@@ -68,7 +75,8 @@ function ProductScreen() {
   }, [slug]);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart, userInfo } = state;
+  // const { cart, userInfo } = state;
+  const { cart } = state;
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -83,38 +91,38 @@ function ProductScreen() {
     });
     navigate("/cart");
   };
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    if (!comment || !rating) {
-      toast.error("Please enter comment and rating");
-      return;
-    }
-    try {
-      const { data } = await axios.post(
-        `/api/products/${product._id}/reviews`,
-        { rating, comment, name: userInfo.name },
-        {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
-        }
-      );
+  // const submitHandler = async (e) => {
+  //   e.preventDefault();
+  //   if (!comment || !rating) {
+  //     toast.error("Please enter comment and rating");
+  //     return;
+  //   }
+  //   try {
+  //     const { data } = await axios.post(
+  //       `/api/products/${product._id}/reviews`,
+  //       { rating, comment, name: userInfo.name },
+  //       {
+  //         headers: { Authorization: `Bearer ${userInfo.token}` },
+  //       }
+  //     );
 
-      dispatch({
-        type: "CREATE_SUCCESS",
-      });
-      toast.success("Review submitted successfully");
-      product.reviews.unshift(data.review);
-      product.numReviews = data.numReviews;
-      product.rating = data.rating;
-      dispatch({ type: "REFRESH_PRODUCT", payload: product });
-      window.scrollTo({
-        behavior: "smooth",
-        top: reviewsRef.current.offsetTop,
-      });
-    } catch (error) {
-      toast.error(getError(error));
-      dispatch({ type: "CREATE_FAIL" });
-    }
-  };
+  //     dispatch({
+  //       type: "CREATE_SUCCESS",
+  //     });
+  //     toast.success("Review submitted successfully");
+  //     product.reviews.unshift(data.review);
+  //     product.numReviews = data.numReviews;
+  //     product.rating = data.rating;
+  //     dispatch({ type: "REFRESH_PRODUCT", payload: product });
+  //     window.scrollTo({
+  //       behavior: "smooth",
+  //       top: reviewsRef.current.offsetTop,
+  //     });
+  //   } catch (error) {
+  //     toast.error(getError(error));
+  //     dispatch({ type: "CREATE_FAIL" });
+  //   }
+  // };
   return loading ? (
     <LoadingBox />
   ) : error ? (
@@ -187,7 +195,7 @@ function ProductScreen() {
           </Card>
         </Col>
       </Row>
-      <div className='my-3'>
+      {/* <div className='my-3'>
         <h2 ref={reviewsRef}>Reviews</h2>
         <div className='mb-3'>
           {product.reviews.length === 0 && (
@@ -253,7 +261,7 @@ function ProductScreen() {
             </MessageBox>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
